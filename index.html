@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>App Supabase Básico</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Cadastro e Login - Supabase</h1>
+
+  <div id="auth">
+    <h2>Entrar / Cadastrar</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="senha" placeholder="Senha">
+    <button id="btnLogin">Login / Cadastro</button>
+  </div>
+
+  <div id="app" style="display:none;">
+    <h2>Olá, <span id="userEmail"></span></h2>
+    <button id="btnLogout">Sair</button>
+
+    <h3>Adicionar Item</h3>
+    <input id="nomeItem" placeholder="Nome do item">
+    <input id="descItem" placeholder="Descrição">
+    <button id="btnAddItem">Salvar</button>
+
+    <h3>Meus Itens</h3>
+    <ul id="listaItens"></ul>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
