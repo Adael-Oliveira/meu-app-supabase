@@ -78,3 +78,53 @@ async function loadItems() {
 supabase.auth.onAuthStateChange((_event, session) => {
   if (session) loadUser();
 });
+
+  // Inicializa o cliente Supabase
+const SUPABASE_URL = 'https://lclaeoissffwztnilkxg.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // <-- Cole sua chave anon public aqui
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// === CADASTRO ===
+const btnCadastro = document.getElementById('btnCadastrar');
+btnCadastro.addEventListener('click', async () => {
+  const email = document.getElementById('emailCadastro').value;
+  const senha = document.getElementById('senhaCadastro').value;
+
+  const { data, error } = await supabase.auth.signUp({
+    email: email,
+    password: senha,
+  });
+
+  if (error) {
+    alert('Erro ao cadastrar: ' + error.message);
+  } else {
+    alert('Cadastro realizado! Verifique seu e-mail para confirmar.');
+  }
+});
+
+// === LOGIN ===
+const btnLogin = document.getElementById('btnLogin');
+btnLogin.addEventListener('click', async () => {
+  const email = document.getElementById('emailLogin').value;
+  const senha = document.getElementById('senhaLogin').value;
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: senha,
+  });
+
+  if (error) {
+    alert('Erro ao fazer login: ' + error.message);
+  } else {
+    alert('Login realizado com sucesso!');
+    console.log('Usuário logado:', data.user);
+  }
+});
+
+// === LOGOUT ===
+async function logout() {
+  await supabase.auth.signOut();
+  alert('Sessão encerrada!');
+}
+
+
